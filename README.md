@@ -1,4 +1,4 @@
-# WouldYouRather Project
+# UdaciCards Project
 
 This project is the final assessment for Udacity's React Native course. The goal of this project is to create a mobile application that allows users to study collections of flashcards.  
 The project was built using Expo, React Native, Redux and Paper.

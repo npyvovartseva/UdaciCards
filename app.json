@@ -1,21 +1,23 @@
 {
-    "expo": {
-      "sdkVersion": "40.0.0",
-      "orientation": "portrait",
-      "name": "UdaciCards",
-      "description": "This project is the final assessment for Udacity's React Native course.",
-      "slug": "udacicards",
-      "version": "1.0",
-      "icon": "./assets/uc_launcher.png",
-      "notification": {
-        "icon": "./assets/uc_launcher.png"
-      },
-      "ios": {
-       "bundleIdentifier": "org.udaciticards.exp"
-      },
-      "android": {
-       "package": "org.udaciticards.exp",
-       "useNextNotificationsApi": true
-      }
+  "expo": {
+    "sdkVersion": "40.0.0",
+    "orientation": "portrait",
+    "name": "UdaciCards",
+    "description": "This project is the final assessment for Udacity's React Native course.",
+    "slug": "udacicards",
+    "version": "1.0.0",
+    "icon": "./assets/uc_launcher.png",
+    "notification": {
+      "icon": "./assets/uc_launcher.png"
+    },
+    "ios": {
+      "bundleIdentifier": "com.udacity.udacicards",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.udacity.udacicards",
+      "versionCode": 1,
+      "useNextNotificationsApi": true
     }
   }
+}
