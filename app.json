@@ -5,18 +5,18 @@
     "name": "UdaciCards",
     "description": "This project is the final assessment for Udacity's React Native course.",
     "slug": "udacicards",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "icon": "./assets/uc_launcher.png",
     "notification": {
       "icon": "./assets/uc_launcher.png"
     },
     "ios": {
-      "bundleIdentifier": "com.udacity.udacicards",
-      "buildNumber": "1.0.0"
+      "bundleIdentifier": "com.udacicards.udacicards",
+      "buildNumber": "2.0.0"
     },
     "android": {
-      "package": "com.udacity.udacicards",
-      "versionCode": 1,
+      "package": "com.udacicards.udacicards",
+      "versionCode": 2,
       "useNextNotificationsApi": true
     }
   }

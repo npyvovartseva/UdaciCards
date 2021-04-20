@@ -1,7 +1,8 @@
-import { saveDeck, addCardToDeck, getDeck } from '../utils/api';
+import { saveDeck, addCardToDeck, getDeck, deleteDeck } from '../utils/api';
 
 export const RECEIVE_DECKS = 'RECEIVE_DECKS';
 export const ADD_DECK = 'ADD_DECK';
+export const REMOVE_DECK = 'REMOVE_DECK';
 export const ADD_CARD = 'ADD_CARD';
 
 export function receiveDecks(decks) {
@@ -22,14 +23,30 @@ export function addDeck(deck, callback) {
         saveDeck(deck)
             .then((id) => {
                 getDeck(id)
-                    .then(result=>{
-                    dispatch(_addDeck(result));
-                })
-                .then(()=>{callback(id)})
+                    .then(result => {
+                        dispatch(_addDeck(result));
+                    })
+                    .then(() => { callback(id) })
             })
     }
 }
 
+export function _removeDeck(id) {
+    return {
+        type: REMOVE_DECK,
+        deckId: id
+    }
+}
+
+export function removeDeck(id) {
+    return (dispatch) => {
+        deleteDeck(id)
+            .then(() => {
+                dispatch(_removeDeck(id));
+            })
+
+    }
+}
 
 export function addCard(id, card) {
     return {

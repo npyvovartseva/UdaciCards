@@ -1,10 +1,16 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {_saveDeck, _addCardToDeck} from './helpers';
+import { _saveDeck, _addCardToDeck } from './helpers';
 
 export async function saveDeck(title) {
     const deck = _saveDeck(title);
     await AsyncStorage.setItem('decks', JSON.stringify({ [deck.id]: deck }));
     return deck.id;
+}
+
+export async function deleteDeck(id) {
+    let decks = await getDecks();
+    delete decks[id];
+    await AsyncStorage.setItem('decks', JSON.stringify(decks));
 }
 
 export async function getDeck(id) {
@@ -14,7 +20,7 @@ export async function getDeck(id) {
 
 export async function getDecks() {
     const decks = JSON.parse(await AsyncStorage.getItem('decks'));
-    return decks? decks: [];
+    return decks ? decks : [];
 }
 
 export async function addCardToDeck(id, card) {

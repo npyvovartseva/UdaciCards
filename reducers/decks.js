@@ -1,4 +1,4 @@
-import { ADD_DECK, ADD_CARD, RECEIVE_DECKS } from '../actions/index';
+import { ADD_DECK, ADD_CARD, RECEIVE_DECKS, REMOVE_DECK } from '../actions/index';
 
 export default function decks(state = {}, action) {
     switch (action.type) {
@@ -12,6 +12,13 @@ export default function decks(state = {}, action) {
             return {
                 ...state,
                 [action.deck.id]: action.deck
+            }
+        }
+        case REMOVE_DECK: {
+            let deckId = action.deckId;
+            let { [deckId]: value, ...otherDecks } = state;
+            return {
+                ...otherDecks
             }
         }
         case ADD_CARD: {
