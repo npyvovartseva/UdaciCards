@@ -5,25 +5,33 @@ import { connect } from 'react-redux';
 import { addDeck } from '../actions';
 
 class NewDeck extends Component {
-    state = { value: '' };
+    state = { title: '', description: '' };
 
-    titleLimit = 50;
+    titleLimit = 30;
+    descriptionLimit = 500;
 
-    handelInputChange = (input) => {
+    handelTitleChange = (input) => {
         if (input.length <= this.titleLimit) {
-            this.setState({ value: input });
+            this.setState({ title: input });
+        }
+    }
+
+    handelDescriptionChange = (input) => {
+        if (input.length <= this.descriptionLimit) {
+            this.setState({ description: input });
         }
     }
 
     disabled = () => {
-        return this.state.value === '';
+        return this.state.title === '';
     }
 
     submit = () => {
-        this.props.dispatch(addDeck(this.state.value,
+        let { title, description } = this.state;
+        this.props.dispatch(addDeck({ title, description },
             (id) => { this.props.navigation.navigate('DeckFront', { id: id }) }))
         Keyboard.dismiss();
-        this.setState({ value: '' });
+        this.setState({ title: '', description: '' });
     }
 
     cancel = () => {
@@ -34,7 +42,7 @@ class NewDeck extends Component {
 
     render() {
         let disabled = this.disabled();
-        let value = this.state.value;
+        let { title, description } = this.state;
 
         return (
             <Card style={styles.card} >
@@ -42,9 +50,13 @@ class NewDeck extends Component {
                     title='New Deck'
                     left={(props) => <Avatar.Icon {...props} icon='plus' />} />
                 <Card.Content style={styles.content} >
-                    <TextInput label='Title' mode='outlined' multiline={true} value={value} onChangeText={this.handelInputChange} />
-                    {value.length > 0
-                        ? <Caption style={styles.caption}>{this.titleLimit - value.length} charecters left</Caption>
+                    <TextInput label='Title' mode='outlined' value={title} onChangeText={this.handelTitleChange} />
+                    {title.length > 0
+                        ? <Caption style={styles.caption}>{this.titleLimit - title.length} charecters left</Caption>
+                        : null}
+                    <TextInput label='Description' mode='outlined' multiline={true} value={description} onChangeText={this.handelDescriptionChange} />
+                    {description.length > 0
+                        ? <Caption style={styles.caption}>{this.DescriptionLimit - description.length} charecters left</Caption>
                         : null}
                 </Card.Content>
                 <Card.Actions style={styles.actions}>
@@ -75,7 +87,7 @@ const styles = StyleSheet.create({
     },
     content: {
         flex: 3,
-        justifyContent: 'space-between'
+       
     },
     caption: {
         alignSelf: 'flex-end',

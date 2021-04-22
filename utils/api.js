@@ -1,8 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { _saveDeck, _addCardToDeck } from './helpers';
 
-export async function saveDeck(title) {
-    const deck = _saveDeck(title);
+export async function saveDeck(title, description) {
+    const deck = _saveDeck(title, description);
     await AsyncStorage.setItem('decks', JSON.stringify({ [deck.id]: deck }));
     return deck.id;
 }
